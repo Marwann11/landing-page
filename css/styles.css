@@ -89,9 +89,11 @@ section {
 }
 
 .list__edit {
+    font-size: 89%;
     color: #000;
     padding: 1.5em;
     text-align: center;
+    transition: ease-in-out 0.4s all
 }
 .list__edit:hover {
     cursor:pointer; 

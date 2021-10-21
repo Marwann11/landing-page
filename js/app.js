@@ -19,16 +19,13 @@
 */
 
 // declare all sections in a variable 
-const mySections = document.querySelectorAll('[data-nav]');
+const mySections = document.querySelectorAll('section');
 
 /**
  * End Global Variables
  * Start Helper Functions
  * 
 */
-function sectionNum() {
-
-}
 
 
 /**
@@ -52,11 +49,13 @@ mySections.forEach(section => {
   listItem.textContent = section.getAttribute('data-nav');
 
   // add smooth scroll
-  listItem.addEventListener('click', function() {
-    section.scrollIntoView({behavior: 'smooth',block: 'center',inline: 'start'}); // MDN reference https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView
+  navBar.addEventListener('click', ev => {
+    if (ev.target === listItem) {
+      section.scrollIntoView({behavior: 'smooth',block: 'center',inline: 'start'}); // MDN reference https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView
+    }
   });
 
-  // add class for each listItem
+  // add class for each listItem => (for Css)
   listItem.className = 'list__edit'
 
   // append to navBar
