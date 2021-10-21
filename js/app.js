@@ -50,20 +50,17 @@ mySections.forEach(section => {
 
   // assign text to each listItem
   listItem.textContent = section.getAttribute('data-nav');
-  // assign it to variable
-  const listText = listItem.textContent;
 
   // add smooth scroll
-  listItem.addEventListener('click', function(ev) {
-    section.scrollIntoView({behavior: 'smooth',block: 'start',inline: 'nearest'})
-  })
+  listItem.addEventListener('click', function() {
+    section.scrollIntoView({behavior: 'smooth',block: 'center',inline: 'start'}); // MDN reference https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView
+  });
 
   // add class for each listItem
   listItem.className = 'list__edit'
 
   // append to navBar
   navBar.appendChild(listItem);
-
 });
 
 
