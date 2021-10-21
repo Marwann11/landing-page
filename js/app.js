@@ -53,14 +53,13 @@ mySections.forEach(section => {
   // assign it to variable
   const listText = listItem.textContent;
 
+  // add smooth scroll
+  listItem.addEventListener('click', function(ev) {
+    section.scrollIntoView({behavior: 'smooth',block: 'start',inline: 'nearest'})
+  })
+
   // add class for each listItem
   listItem.className = 'list__edit'
-
-  // add anchor to section
-  listItem.innerHTML = `<a href="#${section.id}">${listText}</a>`;
-
-  // add smooth scroll
-  section.id.scrollIntoView({behavior: "smooth",block: 'start',inline: 'nearest'})
 
   // append to navBar
   navBar.appendChild(listItem);
