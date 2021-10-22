@@ -27,7 +27,6 @@ const mySections = document.querySelectorAll('section');
  * 
 */
 
-
 /**
  * End Helper Functions
  * Begin Main Functions
@@ -64,8 +63,25 @@ mySections.forEach(section => {
 
 
 // Add class 'active' to section when near top of viewport
+function allSectionDim() {
+  mySections.forEach(section => {
+  // get each section dimension using getBoundingClientRect
+  const sectDimension = section.getBoundingClientRect(); 
+  //console.log(sectDimension.top)
+  //console.log(sectDimension.bottom)
+  
 
+  window.addEventListener('scroll', () => {
+    if (sectDimension.top > 500) {
+      mySections.forEach(section => {
+        section.classList.remove('active-class')
+      });
+    }
+    section.classList.add('active-class')
+  })
+})}
 
+setTimeout(allSectionDim(), 0);
 /**
  * End Main Functions
  * Begin Events
