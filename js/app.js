@@ -21,6 +21,10 @@
 // declare all sections in a variable 
 const mySections = document.querySelectorAll('section');
 
+const sectArray = Array.from(mySections)
+
+// declare the ul
+const navBar = document.querySelector('#navbar__list');
 /**
  * End Global Variables
  * Start Helper Functions
@@ -35,8 +39,8 @@ const mySections = document.querySelectorAll('section');
 
 // build the nav
 
-// declare the ul
-const navBar = document.querySelector('#navbar__list');
+// create a document fragment to minimize reflow & repaint
+const myDocFrag = document.createDocumentFragment()
 
 // iterate over mySections variable and add li dynamically
 mySections.forEach(section => {
@@ -57,31 +61,66 @@ mySections.forEach(section => {
   // add class for each listItem => (for Css)
   listItem.className = 'list__edit'
 
-  // append to navBar
-  navBar.appendChild(listItem);
+  // append to documentFragment
+  myDocFrag.appendChild(listItem); // no reflow or repaint here
 });
+
+// append to navBar
+navBar.appendChild(myDocFrag); // one reflow and repaint here
+
 
 
 // Add class 'active' to section when near top of viewport
-function allSectionDim() {
+/*function allSectionDim() {
   mySections.forEach(section => {
   // get each section dimension using getBoundingClientRect
   const sectDimension = section.getBoundingClientRect(); 
-  //console.log(sectDimension.top)
+  console.log(sectDimension.top)
   //console.log(sectDimension.bottom)
-  
 
+  // add event listener on window to detect changes
   window.addEventListener('scroll', () => {
-    if (sectDimension.top > 500) {
-      mySections.forEach(section => {
-        section.classList.remove('active-class')
-      });
-    }
-    section.classList.add('active-class')
+      for(i = 0; i < mySections.length; i++) {
+        // if statement to check sections
+        if (sectDimension.top < 250 && sectDimension.bottom < 960 && sectDimension.top > -400 && sectDimension.bottom > 312) {
+          mySections[i].classList.add('active-class');
+        }
+      }
   })
-})}
+  section.classList.remove('active-class')
+})}*/
 
-setTimeout(allSectionDim(), 0);
+// intersectionObserver options
+let options = {
+  root: null,
+  threshold: 0.4
+}
+
+//callback function for intersection observer
+let callBackFunc = (entries) => { // entries refers to all elements observed
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('active-class');
+    }
+    else {
+      entry.target.classList.remove('active-class');
+    }
+  }) 
+}
+
+// create intersectionObserver
+const observer = new IntersectionObserver(callBackFunc, options);
+
+
+// using forEach method to observe over every element
+mySections.forEach(elem => {
+  if (elem) {
+    observer.observe(elem);
+  }
+})
+
+
+
 /**
  * End Main Functions
  * Begin Events
