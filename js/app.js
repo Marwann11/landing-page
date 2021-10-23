@@ -64,7 +64,7 @@ mySections.forEach(section => {
 
   // assign text to each listItem
   listItem.textContent = section.getAttribute('data-nav');
-  const listText = listItem.textContent;
+  
   // add smooth scroll
   navBar.addEventListener('click', ev => { // one event listener here on navBar
     if (ev.target === listItem) { //using event.target to access each listItem
@@ -115,8 +115,6 @@ mySections.forEach(elem => {
     observer.observe(elem);
   }
 })
-
-
 
 /** 
  * layoutChanges
