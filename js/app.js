@@ -76,17 +76,6 @@ mySections.forEach(section => {
 
   // append to documentFragment
   myDocFrag.appendChild(listItem); // no reflow or repaint here
-
-  // highlight listItem if section is active
-  window.addEventListener('scroll', () => {
-    if (section.classList.contains('active-class')) {
-    allLists.forEach(list => {
-      if (list.textContent === section.getAttribute('data-nav')) {
-        list.style.backgroundColor = 'black';
-        list.style.color = 'white';
-      }
-    })
-  }})
 });
 
 // append to navBar
@@ -109,9 +98,9 @@ let options = {
 const observer = new IntersectionObserver(callBackFunc, options);
 
 // using forEach method to observe over every section 
-mySections.forEach(elem => {
+mySections.forEach(elem => { 
   if (elem) {
-    observer.observe(elem);
+    observer.observe(elem); // learned from => https://stackoverflow.com/questions/54866560/same-intersection-observer-for-multiple-html-elements
   }
 });
 
