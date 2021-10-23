@@ -1,7 +1,7 @@
-# Landing Page Project
+# Landing Page Project {#title}
 
 ## Table of Contents
 
-* [Landing Page Project] [#Landing-Page-Project]
+* [Landing Page Project] [#title]
 
 
