@@ -1,4 +1,10 @@
-# Landing Page Project {#title}
+<style>
+none{
+     display: none;
+}
+</style>
+
+# Landing Page Project <none>{#title}</none>
 
 ## Table of Contents {#contents}
 
