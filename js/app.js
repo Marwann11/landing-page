@@ -32,6 +32,19 @@ const allLists = document.querySelectorAll('li');
  * 
 */
 
+//callback function for intersection observer
+let callBackFunc = (sections) => { 
+  sections.forEach(section => {
+    if (section.isIntersecting) { // if section is intersecting with the amount declared in threshold
+      //
+      section.target.classList.add('active-class'); // section(entry).target refers to the element itself
+    }
+    else {
+      section.target.classList.remove('active-class');
+    }
+  }) 
+}
+
 /**
  * End Helper Functions
  * Begin Main Functions
@@ -75,18 +88,6 @@ mySections.forEach(section => {
       }
     })
   }})
-  
-  
-  
-  /*if (section.getAttribute('class') === 'active-class') {
-    allLists.forEach(list => {
-      if (listItem.textContent == section.getAttribute('data-nav')) {
-        listItem.style.backgroundColor = 'black';
-        listItem.style.color = 'white';
-      }
-    })
-  }*/
-
 });
 
 // append to navBar
@@ -105,22 +106,8 @@ let options = {
   threshold: 0.65
 }
 
-//callback function for intersection observer
-let callBackFunc = (sections) => { 
-  sections.forEach(section => {
-    if (section.isIntersecting) { // if section is intersecting with the amount declared in threshold
-      //
-      section.target.classList.add('active-class'); // section(entry).target refers to the element itself
-    }
-    else {
-      section.target.classList.remove('active-class');
-    }
-  }) 
-}
-
 // create intersectionObserver
 const observer = new IntersectionObserver(callBackFunc, options);
-
 
 // using forEach method to observe over every section 
 mySections.forEach(elem => {
@@ -128,6 +115,12 @@ mySections.forEach(elem => {
     observer.observe(elem);
   }
 })
+
+
+
+/** 
+ * layoutChanges
+ */
 
 // fontSize adjust for multiple screens
 
