@@ -58,6 +58,7 @@ main {
 section {
     position: relative;
     min-height: 80vh;
+    font-size: 10pt;
 }
 
 
@@ -89,24 +90,24 @@ section {
 }
 
 .list__edit {
-    font-size: 89%;
+    font-size: 110%;
     color: #000;
     padding: 1.5em;
     text-align: center;
     transition: ease-in-out 0.4s all
 }
 .list__edit:hover {
-    cursor:pointer; 
+    cursor:pointer;
     background-color: black;
     color: whitesmoke;
 }
 
 #navbar__list {
     display: flex;
-    flex: 1 1 auto;
-    flex-wrap: wrap;
+    overflow: auto;
+    white-space: nowrap;
     background:whitesmoke;
-    justify-content: flex-start;
+    scroll-behavior: smooth;
 }
 
 
@@ -216,10 +217,10 @@ section:nth-of-type(3n + 1) .landing__container::after {
 /* Section Active Styles */
 /* Note: your-active-class class is applied through javascript. You should update the class here and in the index.html to what you set in your javascript file.  */
 .active-class {
-    border: black 5px solid;
-    border-radius: 10px;
-    background-color: rgba(160, 160, 160, 0.644);
-    transition: ease 2s all;
+    border: black 3px double;
+    border-radius: 8px;
+    background-color: rgb(44, 104, 160);
+    transition: ease 1.5s all;
 }
 
 

@@ -21,10 +21,11 @@
 // declare all sections in a variable 
 const mySections = document.querySelectorAll('section');
 
-const sectArray = Array.from(mySections)
-
 // declare the ul
 const navBar = document.querySelector('#navbar__list');
+
+// declare all listItems
+const allLists = document.querySelectorAll('li');
 /**
  * End Global Variables
  * Start Helper Functions
@@ -50,10 +51,10 @@ mySections.forEach(section => {
 
   // assign text to each listItem
   listItem.textContent = section.getAttribute('data-nav');
-
+  const listText = listItem.textContent;
   // add smooth scroll
-  navBar.addEventListener('click', ev => {
-    if (ev.target === listItem) {
+  navBar.addEventListener('click', ev => { // one event listener here on navBar
+    if (ev.target === listItem) { //using event.target to access each listItem
       section.scrollIntoView({behavior: 'smooth',block: 'center',inline: 'start'}); // MDN reference https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView
     }
   });
@@ -63,6 +64,29 @@ mySections.forEach(section => {
 
   // append to documentFragment
   myDocFrag.appendChild(listItem); // no reflow or repaint here
+
+  // highlight listItem if section is active
+  window.addEventListener('scroll', () => {
+    if (section.classList.contains('active-class')) {
+    allLists.forEach(list => {
+      if (list.textContent === section.getAttribute('data-nav')) {
+        list.style.backgroundColor = 'black';
+        list.style.color = 'white';
+      }
+    })
+  }})
+  
+  
+  
+  /*if (section.getAttribute('class') === 'active-class') {
+    allLists.forEach(list => {
+      if (listItem.textContent == section.getAttribute('data-nav')) {
+        listItem.style.backgroundColor = 'black';
+        listItem.style.color = 'white';
+      }
+    })
+  }*/
+
 });
 
 // append to navBar
@@ -82,13 +106,14 @@ let options = {
 }
 
 //callback function for intersection observer
-let callBackFunc = (entries) => { // entries refers to all elements observed
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('active-class');
+let callBackFunc = (sections) => { 
+  sections.forEach(section => {
+    if (section.isIntersecting) { // if section is intersecting with the amount declared in threshold
+      //
+      section.target.classList.add('active-class'); // section(entry).target refers to the element itself
     }
     else {
-      entry.target.classList.remove('active-class');
+      section.target.classList.remove('active-class');
     }
   }) 
 }
@@ -97,14 +122,37 @@ let callBackFunc = (entries) => { // entries refers to all elements observed
 const observer = new IntersectionObserver(callBackFunc, options);
 
 
-// using forEach method to observe over every element
+// using forEach method to observe over every section 
 mySections.forEach(elem => {
   if (elem) {
     observer.observe(elem);
   }
 })
 
+// fontSize adjust for multiple screens
 
+// for mobile-devices
+if (window.innerWidth < 600) {
+    document.body.style.fontSize = '60%';
+}
+
+// for laptops and medium screens
+if (window.innerWidth >= 1000) {
+  document.querySelectorAll('li').forEach(elem => {
+    elem.style.fontSize = '90%';
+  })
+  document.querySelectorAll('section').forEach(section => {
+    section.style.fontSize = '15pt';
+  })
+}
+
+// for 4k screens
+if (window.innerWidth > 2000) {
+  document.body.style.fontSize = '200%';
+  document.querySelectorAll('section').forEach(section => {
+    section.style.fontSize = '30pt';
+  })
+}
 
 /**
  * End Main Functions
@@ -113,9 +161,5 @@ mySections.forEach(elem => {
 */
 
 // Build menu 
-
-// Scroll to section on link click
-
-// Set sections as active
 
 
