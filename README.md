@@ -2,6 +2,6 @@
 
 ## Table of Contents
 
-* [project-Title] [1]
+* [LandingPageProject] [1]
 
 
