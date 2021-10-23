@@ -71,29 +71,14 @@ navBar.appendChild(myDocFrag); // one reflow and repaint here
 
 
 // Add class 'active' to section when near top of viewport
-/*function allSectionDim() {
-  mySections.forEach(section => {
-  // get each section dimension using getBoundingClientRect
-  const sectDimension = section.getBoundingClientRect(); 
-  console.log(sectDimension.top)
-  //console.log(sectDimension.bottom)
 
-  // add event listener on window to detect changes
-  window.addEventListener('scroll', () => {
-      for(i = 0; i < mySections.length; i++) {
-        // if statement to check sections
-        if (sectDimension.top < 250 && sectDimension.bottom < 960 && sectDimension.top > -400 && sectDimension.bottom > 312) {
-          mySections[i].classList.add('active-class');
-        }
-      }
-  })
-  section.classList.remove('active-class')
-})}*/
+// use intersectionObserver api to track changes in sections visibility
+// source => https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
 
 // intersectionObserver options
 let options = {
-  root: null,
-  threshold: 0.4
+  root: null, // root refers to browser viewport
+  threshold: 0.65
 }
 
 //callback function for intersection observer
