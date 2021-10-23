@@ -38,12 +38,11 @@ let callBackFunc = (sections) => {
     if (section.isIntersecting) { // if section is intersecting with the amount declared in threshold
       //
       section.target.classList.add('active-class'); // section(entry).target refers to the element itself
-    }
-    else {
+    } else {
       section.target.classList.remove('active-class');
     }
   }) 
-}
+};
 
 /**
  * End Helper Functions
@@ -54,7 +53,7 @@ let callBackFunc = (sections) => {
 // build the nav
 
 // create a document fragment to minimize reflow & repaint
-const myDocFrag = document.createDocumentFragment()
+const myDocFrag = document.createDocumentFragment();
 
 // iterate over mySections variable and add li dynamically
 mySections.forEach(section => {
@@ -104,7 +103,7 @@ navBar.appendChild(myDocFrag); // one reflow and repaint here
 let options = {
   root: null, // root refers to browser viewport
   threshold: 0.65
-}
+};
 
 // create intersectionObserver
 const observer = new IntersectionObserver(callBackFunc, options);
@@ -114,7 +113,8 @@ mySections.forEach(elem => {
   if (elem) {
     observer.observe(elem);
   }
-})
+});
+
 
 /** 
  * layoutChanges
@@ -125,7 +125,7 @@ mySections.forEach(elem => {
 // for mobile-devices
 if (window.innerWidth < 600) {
     document.body.style.fontSize = '60%';
-}
+};
 
 // for laptops and medium screens
 if (window.innerWidth >= 1000) {
@@ -135,7 +135,7 @@ if (window.innerWidth >= 1000) {
   document.querySelectorAll('section').forEach(section => {
     section.style.fontSize = '15pt';
   })
-}
+};
 
 // for 4k screens
 if (window.innerWidth > 2000) {
@@ -143,7 +143,7 @@ if (window.innerWidth > 2000) {
   document.querySelectorAll('section').forEach(section => {
     section.style.fontSize = '30pt';
   })
-}
+};
 
 /**
  * End Main Functions
