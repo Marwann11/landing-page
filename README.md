@@ -1,10 +1,4 @@
-<style>
-none{
-     display: none;
-}
-</style>
-
-# Landing Page Project <none>{#title}</none>
+# Landing Page Project {#title}
 
 ## Table of Contents {#contents}
 
@@ -24,6 +18,7 @@ Project is made using **(Html,Css and Js)**.
 This project can be used for blogs and CMS. 
 
 infinite scrolling can be applied if needed to for some websites.
+
 ### Dependencies {#depend}
 This website main base structure is sections, auto navigation items is generated based on sections.
 
