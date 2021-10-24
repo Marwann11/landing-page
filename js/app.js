@@ -104,36 +104,6 @@ mySections.forEach(elem => {
   }
 });
 
-
-/** 
- * layoutChanges
- */
-
-// fontSize adjust for multiple screens
-
-// for mobile-devices
-if (window.innerWidth < 600) {
-    document.body.style.fontSize = '60%';
-};
-
-// for laptops and medium screens
-if (window.innerWidth >= 1000) {
-  document.querySelectorAll('li').forEach(elem => {
-    elem.style.fontSize = '90%';
-  })
-  document.querySelectorAll('section').forEach(section => {
-    section.style.fontSize = '15pt';
-  })
-};
-
-// for 4k screens
-if (window.innerWidth > 2000) {
-  document.body.style.fontSize = '200%';
-  document.querySelectorAll('section').forEach(section => {
-    section.style.fontSize = '30pt';
-  })
-};
-
 /**
  * End Main Functions
  * Begin Events
